@@ -37,16 +37,16 @@ func main() {
 		if err != nil {
 			log.Fatal("Could not insert todos correctly")
 		}
+		Added(arguments)
 	} else if mode == "list" {
 		todos := GetAllTodos(db)
-		for i := 0; i < len(todos); i++ {
-			fmt.Println(todos[i])
-		}
+		Show(todos)
 	} else if mode == "delete" {
 		err := DeleteTodo(db, arguments[0])
 		if err != nil {
 			log.Fatal("Could not delete todo correctly")
 		}
+		Deleted(arguments[0])
 	} else if mode == "help" {
 		help_text := "Usage: \n add <task_name_1> <task_name_2> ...\n list (Display all pending tasks)\n delete <task_name> (Remove a task from the list)"
 		fmt.Println(help_text)
