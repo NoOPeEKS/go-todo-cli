@@ -19,8 +19,12 @@ func ParseArguments() (string, []string) {
 			panic("Too much arguments. List does not require subcommands.")
 		}
 		return "list", nil
-	} else if args[0] == "delete" { // TODO
-		panic("Not implemented yet")
+	} else if args[0] == "delete" { // If first argument is delete, delete next argument in db
+		if len(args) == 2 {
+			return "delete", args[1:]
+		} else {
+			panic("Incorrect arguments. Need to have only 1 argument to delete")
+		}
 	} else {
 		return "error", nil
 	}

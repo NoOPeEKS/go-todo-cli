@@ -30,7 +30,10 @@ func main() {
 			fmt.Println(todos[i])
 		}
 	} else if mode == "delete" {
-		panic("Not implemented yet!")
+		err := DeleteTodo(db, arguments[0])
+		if err != nil {
+			panic("Could not delete todo correctly")
+		}
 	}
 
 	// Close the database connection

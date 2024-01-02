@@ -44,3 +44,11 @@ func AddTodos(database *sql.DB, todos []string) error {
 	}
 	return nil
 }
+
+func DeleteTodo(database *sql.DB, todo string) error {
+	_, err := database.Exec("DELETE FROM todos WHERE name = ?", todo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
