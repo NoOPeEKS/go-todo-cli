@@ -34,3 +34,13 @@ func GetAllTodos(database *sql.DB) []string {
 	rows.Close()
 	return todos
 }
+
+func AddTodos(database *sql.DB, todos []string) error {
+	for _, todo := range todos {
+		_, err := database.Exec("INSERT INTO todos VALUES(?);", todo)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
