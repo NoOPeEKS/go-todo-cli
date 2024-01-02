@@ -6,6 +6,18 @@ import (
 )
 
 func main() {
+
+	if !DatabaseFileExists() {
+		CreateDatabase()
+		db, err := ConnectSQLite("./todos.db")
+		if err != nil {
+			log.Fatal("Could not connect to database after creating it.")
+		}
+		_, error := db.Exec("CREATE TABLE todos (name primary key);")
+		if error != nil {
+			log.Fatal("Could not create todos table when creating database")
+		}
+	}
 	// Connect to the database and get a DB object
 	db, err := ConnectSQLite("./todos.db")
 

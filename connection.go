@@ -2,10 +2,21 @@ package main
 
 import (
 	"database/sql"
+	"errors"
 	"log"
+	"os"
 
 	_ "github.com/mattn/go-sqlite3"
 )
+
+func DatabaseFileExists() bool {
+	_, error := os.Stat("./todos.db")
+	return !errors.Is(error, os.ErrNotExist)
+}
+
+func CreateDatabase() {
+	os.Create("./todos.db")
+}
 
 func ConnectSQLite(path string) (*sql.DB, error) {
 	db, err := sql.Open("sqlite3", path)
