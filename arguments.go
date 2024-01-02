@@ -28,6 +28,12 @@ func ParseArguments() (string, []string) {
 			log.Fatal("Incorrect arguments. Need to have only 1 argument to delete")
 			return "error", nil
 		}
+	} else if args[0] == "help" {
+		if len(args) == 1 {
+			return "help", nil
+		} else {
+			return "error", nil
+		}
 	} else {
 		return "error", nil
 	}

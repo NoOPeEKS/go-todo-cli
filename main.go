@@ -45,8 +45,11 @@ func main() {
 	} else if mode == "delete" {
 		err := DeleteTodo(db, arguments[0])
 		if err != nil {
-			panic("Could not delete todo correctly")
+			log.Fatal("Could not delete todo correctly")
 		}
+	} else if mode == "help" {
+		help_text := "Usage: \n add <task_name_1> <task_name_2> ...\n list (Display all pending tasks)\n delete <task_name> (Remove a task from the list)"
+		fmt.Println(help_text)
 	}
 
 	// Close the database connection
