@@ -13,7 +13,8 @@ This is a simple command-line Todo List application built using Go. It allows us
 
 ### Prerequisites
 
-- GoLang installed
+- Have Go installed in your PC
+- Have SQLite3 installed
 
 ### Steps
 
@@ -45,7 +46,7 @@ This is a simple command-line Todo List application built using Go. It allows us
 
 The application supports the following commands:
 
-- `add <task_name>`: Add a new task to the list.
+- `add <task_name_1> <task_name_2> ...`: Add a new task or more to the list.
 - `list`: Display all pending tasks.
 - `delete <task_name>`: Remove a task from the list.
 - `help`: Display usage instructions.
