@@ -14,8 +14,16 @@ func main() {
 		default:
 			fmt.Println("Default case")
 		}*/
-	todos := GetAllTodos()
+	db, err := ConnectSQLite("./todos.db")
+
+	if err != nil {
+		panic("Couldnt connect to database")
+	}
+
+	todos := GetAllTodos(db)
+
 	for i := 0; i < len(todos); i++ {
 		fmt.Println(todos[i])
 	}
+	db.Close()
 }

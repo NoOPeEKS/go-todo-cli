@@ -7,12 +7,18 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func GetAllTodos() []string {
-	db, err := sql.Open("sqlite3", "./todos.db")
+func ConnectSQLite(path string) (*sql.DB, error) {
+	db, err := sql.Open("sqlite3", path)
+
 	if err != nil {
-		fmt.Println("Could not open sqlite3 db")
+		return nil, err
 	}
-	rows, err := db.Query("SELECT * FROM todos")
+
+	return db, nil
+}
+
+func GetAllTodos(database *sql.DB) []string {
+	rows, err := database.Query("SELECT * FROM todos")
 	if err != nil {
 		fmt.Println("Could not query correctly")
 	}
@@ -26,6 +32,5 @@ func GetAllTodos() []string {
 		todos = append(todos, todo)
 	}
 	rows.Close()
-	db.Close()
 	return todos
 }
