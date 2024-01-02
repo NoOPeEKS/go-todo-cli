@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 )
 
 func main() {
@@ -9,7 +10,7 @@ func main() {
 	db, err := ConnectSQLite("./todos.db")
 
 	if err != nil {
-		panic("Couldnt connect to database")
+		log.Fatal("Couldnt connect to database")
 	}
 
 	// Parse the program arguments to select the mode and subarguments
@@ -17,12 +18,12 @@ func main() {
 
 	// Depending on the mode, do one thing or the other
 	if mode == "error" {
-		panic("Could not parse arguments correctly")
+		log.Fatal("Could not parse arguments correctly")
 	}
 	if mode == "add" {
 		err := AddTodos(db, arguments)
 		if err != nil {
-			panic("Could not insert todos correctly")
+			log.Fatal("Could not insert todos correctly")
 		}
 	} else if mode == "list" {
 		todos := GetAllTodos(db)

@@ -2,7 +2,7 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
+	"log"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -20,14 +20,14 @@ func ConnectSQLite(path string) (*sql.DB, error) {
 func GetAllTodos(database *sql.DB) []string {
 	rows, err := database.Query("SELECT * FROM todos")
 	if err != nil {
-		fmt.Println("Could not query correctly")
+		log.Fatal("Could not get todos list")
 	}
 	var todos []string
 	for rows.Next() {
 		var todo string
 		err = rows.Scan(&todo)
 		if err != nil {
-			fmt.Println("could not scan row")
+			log.Fatal("Could not assign todo query result to variable")
 		}
 		todos = append(todos, todo)
 	}
